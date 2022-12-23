@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+
+    const [userName, setUserName] = useState('Kim');
+
+    // 마운트 될 때와 값이 변경될 때 실행
+    useEffect(() => {
+        console.log('useEffect call!');
+        console.log('userName:' + userName);
+    });
+
+    const handleClickPark = () => setUserName("Park");
+    const handleClickHong = () => setUserName("Hong");
+
+    console.log("App userName : " + userName);
+
+    return (
+        <div>
+            <h1>Hello {userName}!</h1>
+            <button onClick={handleClickPark}>Park</button>
+            <button onClick={handleClickHong}>Hong</button>
+        </div>
+    );
+};
 
 export default App;
