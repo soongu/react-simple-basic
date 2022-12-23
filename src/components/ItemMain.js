@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ItemList from "./ItemList";
 import ItemTotal from "./ItemTotal";
+import ItemInput from "./ItemInput";
 
 const ItemMain = () => {
 
@@ -24,10 +25,22 @@ const ItemMain = () => {
 
     const [foodList, setFoodList] = useState(foodArray);
 
+    // 이벤트 처리 함수 정의
+    const onChangePrice = (name, price) => {
+        console.log("onChangePrice name : " + name + " price : " + price);
+
+        setFoodList(foodList =>
+            foodList.map((food) =>
+                food.name === name ? { ...food, price: price } : food
+            )
+        );
+    };
 
 
     return (
         <>
+            <ItemInput items={foodList} onChangePrice={onChangePrice} />
+            <hr/>
             <ItemList items={foodList}/>
             <ItemTotal items={foodList}/>
         </>
