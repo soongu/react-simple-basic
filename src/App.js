@@ -1,36 +1,57 @@
 import './App.css';
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 
 const App = () => {
 
-    const [userName, setUserName] = useState('Kim');
+    const foodArray = [
+        {
+            name: "짜장면",
+            price: 6000,
+            quantity: 3,
+        },
+        {
+            name: "탕수육",
+            price: 20000,
+            quantity: 2,
+        },
+        {
+            name: "짬뽕",
+            price: 7000,
+            quantity: 4,
+        },
+    ];
 
-    // 마운트 될 때와 값이 변경될 때 실행
-    // 두번째 인자에 빈배열 넣을시: 처음 렌더링시에만 실행
-    // 두번째 인자에 배열에 변수넣을시: 해당 값이 업데이트될때만 실행
-    // 함수리턴시: clean-up함수 반환하여 컴포너넌트가 언마운트되거나 업데이트되기 직전에 실행
-    useEffect(() => {
-        console.log('useEffect call!');
-        console.log('userName:' + userName);
+    const [foodList, setFoodList] = useState(foodArray);
 
-        return () => {
-            console.log('cleanup');
-            console.log('cleanup username: ' + userName);
-        };
 
-    }, [userName]);
+    // 상태값 계산
 
-    const handleClickPark = () => setUserName("Park");
-    const handleClickHong = () => setUserName("Hong");
+    // const totalPrice = foodList.reduce((sum, food) => {
+    //      return sum + (food.price * food.quantity);
+    // }, 0);
 
-    console.log("App userName : " + userName);
+    // 상태값 계산 함수
+    const calcTotalPrice = foodList => {
+        return foodList.reduce((sum, food) => {
+            return sum + (food.price * food.quantity);
+        }, 0);
+    };
+
+    // useMemo 훅: 상태값이 변경되지 않으면 그전에 계산된 값을 보관하고있다가 그대로사용하여 성능을 향상시킨다.
+    const totalPrice = useMemo(() => calcTotalPrice(foodList), [foodList]);
 
     return (
-        <div>
-            <h1>Hello {userName}!</h1>
-            <button onClick={handleClickPark}>Park</button>
-            <button onClick={handleClickHong}>Hong</button>
-        </div>
+        <>
+            <ul>
+                {foodList.map(food => (
+                    <li key={food.name}>
+                        {food.name}: {food.price} x {food.quantity} = {food.price * food.quantity} 원
+                    </li>
+                ))}
+            </ul>
+
+            <p>합계: {totalPrice}원</p>
+        </>
     );
 };
 
