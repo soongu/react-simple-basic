@@ -1,0 +1,48 @@
+
+.todo-list-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+
+  &:hover .remove {
+    display: block;
+  }
+
+  .check-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    border: 1px solid #9da1a7;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    cursor: pointer;
+
+    &.active {
+      border: 1px solid #38d9a9;
+      color: #38d9a9;
+    }
+  }
+  .text {
+    flex: 1;
+    font-size: 21px;
+    color: #495057;
+    &.finish {
+      color: #919396;
+      text-decoration: line-through;
+    }
+  }
+
+  .remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f51b4f;
+    font-size: 28px;
+    cursor: pointer;
+    display: none;
+  }
+}
+

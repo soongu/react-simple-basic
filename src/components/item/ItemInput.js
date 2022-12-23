@@ -34,4 +34,4 @@ ItemInput.propTypes = {
     onChangePrice: PropTypes.func
 };
 
-export default ItemInput;
+export default React.memo(ItemInput);

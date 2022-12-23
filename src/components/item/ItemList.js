@@ -20,4 +20,4 @@ ItemList.propTypes = {
     items: PropTypes.array
 };
 
-export default ItemList;
+export default React.memo(ItemList);

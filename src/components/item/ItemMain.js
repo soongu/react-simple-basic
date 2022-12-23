@@ -5,25 +5,20 @@ import ItemInput from "./ItemInput";
 
 const ItemMain = () => {
 
-    const foodArray = [
-        {
-            name: "짜장면",
-            price: 6000,
-            quantity: 3,
-        },
-        {
-            name: "탕수육",
-            price: 20000,
-            quantity: 2,
-        },
-        {
-            name: "짬뽕",
-            price: 7000,
-            quantity: 4,
-        },
-    ];
+    const createDummyFoods = () => {
+        const foodArray = [];
 
-    const [foodList, setFoodList] = useState(foodArray);
+        for (let i = 0; i < 2000; i++) {
+            foodArray.push({
+                name: `food${i}`,
+                price: parseInt(100000 * Math.random(), 10),
+                quantity: 1 + parseInt(10 * Math.random(), 10),
+            });
+        }
+        return foodArray;
+    };
+
+    const [foodList, setFoodList] = useState(createDummyFoods());
 
     // 이벤트 처리 함수 정의
     const onChangePrice = useCallback((name, price) => {
@@ -31,11 +26,10 @@ const ItemMain = () => {
 
         setFoodList(foodList =>
             foodList.map((food) =>
-                food.name === name ? { ...food, price: price } : food
+                food.name === name ? {...food, price: price} : food
             )
         );
     }, []);
-
 
     return (
         <>
@@ -48,4 +42,4 @@ const ItemMain = () => {
 };
 
 
-export default ItemMain;
+export default React.memo(ItemMain);

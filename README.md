@@ -6,3 +6,8 @@
 - 리액트 앱 실행: `$ yarn start`
    - 앱실행시 윈도우 파워쉘 권한오류로 실행 실패시 관리자 모드로 파워쉘 실행후
    - `$ Set-ExecutionPolicy RemoteSigned`입력 후 모두 예 [A] 입력 후 다시 yarn start
+
+- 라이브러리 설치 
+```
+$ yarn add node-sass classnames react-icons
+```

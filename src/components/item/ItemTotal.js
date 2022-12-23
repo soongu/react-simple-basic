@@ -22,4 +22,4 @@ ItemTotal.propTypes = {
     items: PropTypes.array
 };
 
-export default ItemTotal;
+export default React.memo(ItemTotal);

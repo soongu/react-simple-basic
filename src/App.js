@@ -1,12 +1,18 @@
+import TodoInput from "./components/todo/TodoInput";
+import TodoList from "./components/todo/TodoList";
+import TodoTemplate from "./components/todo/TodoTemplate";
+
 import './App.css';
-import ItemMain from "./components/ItemMain";
+import TodoHeader from "./components/todo/TodoHeader";
 
 const App = () => {
 
     return (
-        <>
-            <ItemMain />
-        </>
+        <TodoTemplate>
+            <TodoHeader />
+            <TodoList />
+            <TodoInput />
+        </TodoTemplate>
     );
 };
 
