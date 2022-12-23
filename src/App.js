@@ -1,18 +1,30 @@
-import TodoInput from "./components/todo/TodoInput";
-import TodoList from "./components/todo/TodoList";
 import TodoTemplate from "./components/todo/TodoTemplate";
 
 import './App.css';
-import TodoHeader from "./components/todo/TodoHeader";
+import {useState} from "react";
 
 const App = () => {
 
+    const [todos, setTodos] = useState([
+        {
+            id: 1,
+            text: "todoItem1",
+            done: true
+        },
+        {
+            id: 2,
+            text: "todoItem2",
+            done: false
+        },
+        {
+            id: 3,
+            text: "todoItem3",
+            done: false
+        }
+    ]);
+
     return (
-        <TodoTemplate>
-            <TodoHeader />
-            <TodoList />
-            <TodoInput />
-        </TodoTemplate>
+        <TodoTemplate todos={todos} />
     );
 };
 
