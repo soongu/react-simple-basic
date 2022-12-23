@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import ItemList from "./ItemList";
 import ItemTotal from "./ItemTotal";
 import ItemInput from "./ItemInput";
@@ -26,7 +26,7 @@ const ItemMain = () => {
     const [foodList, setFoodList] = useState(foodArray);
 
     // 이벤트 처리 함수 정의
-    const onChangePrice = (name, price) => {
+    const onChangePrice = useCallback((name, price) => {
         console.log("onChangePrice name : " + name + " price : " + price);
 
         setFoodList(foodList =>
@@ -34,7 +34,7 @@ const ItemMain = () => {
                 food.name === name ? { ...food, price: price } : food
             )
         );
-    };
+    }, []);
 
 
     return (

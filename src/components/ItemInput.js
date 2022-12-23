@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 
 const ItemInput = ({ items: foodList, onChangePrice }) => {
 
     // 텍스트 입력 요소 변경 이벤트 처리 함수
-    const handleChange = ({target}) => {
+    const handleChange = useCallback(({target}) => {
         console.log("name : " + target.name);
         console.log("value : " + target.value);
 
         onChangePrice(target.name, target.value);
-    };
+    }, [onChangePrice]);
 
     return (
         <ul>
