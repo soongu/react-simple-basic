@@ -1,21 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './scss/TodoItem.scss';
 import {MdDone, MdDelete} from "react-icons/md";
 import cn from 'classnames';
 
-const TodoItem = ({ id, done, text }) => {
+const TodoItem = ({todo, onRemove, onToggle}) => {
+    // console.log('item: ', todo);
+    const {id, text, done} = todo;
     return (
-        <li className='todo-list-item'>
-            <div className={cn('check-circle', {active: done})}>{done && <MdDone />}</div>
+        <li className='todo-list-item' data-id={id}>
+            <div className={cn('check-circle', {active: done})} onClick={() => onToggle(id)}>{done && <MdDone />}</div>
             <span className={cn('text', {finish: done})}>{text}</span>
-            <div className='remove'><MdDelete/></div>
+            <div className='remove' onClick={() => onRemove(id)}><MdDelete/></div>
         </li>
     );
 };
 
-TodoItem.propTypes = {
-
-};
 
 export default TodoItem;
