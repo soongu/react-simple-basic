@@ -1,12 +1,11 @@
-import React, {useState, useContext} from 'react';
+import React, {useState} from 'react';
 import {MdAdd} from "react-icons/md";
 import './scss/TodoInput.scss';
 import cn from 'classnames';
-import TodoContext from "../../context/todo";
 
-const TodoInput = () => {
+const TodoInput = ({ inputValue, onInsert, onChangeInput }) => {
 
-    const {state, actions} = useContext(TodoContext);
+    // const {state, actions} = useContext(TodoContext);
 
     const [open, setOpen] = useState(false);
 
@@ -14,18 +13,29 @@ const TodoInput = () => {
     // 할일 입력창 토글 이벤트
     const onToggleOpen = () => setOpen(!open);
 
+    const onChange = e => {
+        onChangeInput(e.target.value);
+    };
+
+    const onSubmit = e => {
+        e.preventDefault();
+
+        onInsert(inputValue);
+        onChangeInput("");
+    };
+
 
     return (
         <>
             {open &&
             <div className='form-wrapper'>
-                <form className='insert-form' onSubmit={actions.handlers.onSubmit}>
+                <form className='insert-form' onSubmit={onSubmit}>
                     <input
                         type="text"
                         autoFocus
                         placeholder='할 일을 입력 후, 엔터를 누르세요!'
-                        value={state.value}
-                        onChange={actions.handlers.onChange}
+                        value={inputValue}
+                        onChange={onChange}
                     />
                 </form>
             </div>}
@@ -37,6 +47,5 @@ const TodoInput = () => {
     );
 };
 
-TodoInput.propTypes = {};
 
 export default TodoInput;

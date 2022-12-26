@@ -3,11 +3,8 @@ import './scss/TodoHeader.scss';
 import TodoContext from "../../context/todo";
 
 
-const TodoHeader = () => {
+const TodoHeader = ({todos}) => {
 
-    const {state} = useContext(TodoContext);
-
-    // const undoneTasks = (todos) => todos.filter(todo => !todo.done);
 
     const countUndoneTasks = (todos) => todos.filter(todo => !todo.done).length;
 
@@ -23,7 +20,7 @@ const TodoHeader = () => {
         <header>
             <h1>{dateString}</h1>
             <div className="day">{dayName}</div>
-            <div className="tasks-left">할 일 {countUndoneTasks(state.todos)}개 남음</div>
+            <div className="tasks-left">할 일 {countUndoneTasks(todos)}개 남음</div>
         </header>
 
     );

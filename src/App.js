@@ -1,11 +1,10 @@
-import TodoTemplate from "./components/todo/TodoTemplate";
-
 import './App.css';
+import TodoContainer from "./containers/TodoContainer";
 
 const App = () => {
 
     return (
-        <TodoTemplate />
+        <TodoContainer />
     );
 };
 
