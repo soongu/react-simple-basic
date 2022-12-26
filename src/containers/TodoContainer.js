@@ -33,31 +33,17 @@ const TodoContainer = ({
     );
 };
 
-// 스토어 상태를 props로 매핑
-const mapStateToProps = (state) => ({
-    inputValue: state.inputValue,
-    todos: state.todos,
-});
-
-// 스토어 상태 변경 함수를 props로 매핑
-const mapDispatchToProps = (dispatch) => ({
-    changeTodoInput: (inputValue) => {
-        dispatch(changeTodoInput(inputValue));
-    },
-    addTodo: (input) => {
-        dispatch(addTodo(input));
-    },
-    toggleTodoStatus: (id) => {
-        dispatch(toggleTodoStatus(id));
-    },
-    removeTodo: (id) => {
-        dispatch(removeTodo(id));
-    }
-
-});
 
 // 리덕스와 연동된 컴포넌트 반환
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    (state) => ({
+        inputValue: state.inputValue,
+        todos: state.todos,
+    }),
+    {
+        changeTodoInput,
+        addTodo,
+        toggleTodoStatus,
+        removeTodo
+    }
 )(TodoContainer);

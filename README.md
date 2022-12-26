@@ -10,4 +10,6 @@
 - 라이브러리 설치 
 ```
 $ yarn add node-sass classnames react-icons
+$ yarn add redux react-redux
+$ yarn add redux-actions
 ```
