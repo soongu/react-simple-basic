@@ -7,7 +7,6 @@ const TodoContext = createContext({
         value: ''
     },
     actions: {
-        setTodos: () => {},
         onInsert: () => {},
         onRemove: () => {},
         onChange: () => {},

@@ -1,10 +1,13 @@
 import React from 'react';
 import './scss/TodoHeader.scss';
+import {TodoConsumer} from "../../context/todo";
 
 
-const TodoHeader = ({todos}) => {
+const TodoHeader = () => {
 
-    const undoneTasks = todos.filter(todo => !todo.done);
+    // const undoneTasks = (todos) => todos.filter(todo => !todo.done);
+
+    const countUndoneTasks = (todos) => todos.filter(todo => !todo.done).length;
 
     const today = new Date();
     const dateString = today.toLocaleDateString('ko-KR', {
@@ -15,11 +18,18 @@ const TodoHeader = ({todos}) => {
     const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
 
     return (
-        <header>
-            <h1>{dateString}</h1>
-            <div className="day">{dayName}</div>
-            <div className="tasks-left">할 일 {undoneTasks.length}개 남음</div>
-        </header>
+        <TodoConsumer>
+            {
+                ({state}) => (
+                    <header>
+                        <h1>{dateString}</h1>
+                        <div className="day">{dayName}</div>
+                        <div className="tasks-left">할 일 {countUndoneTasks(state.todos)}개 남음</div>
+                    </header>
+                )
+            }
+
+        </TodoConsumer>
     );
 };
 

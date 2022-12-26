@@ -4,6 +4,7 @@ import {MdDone, MdDelete} from "react-icons/md";
 import cn from 'classnames';
 
 const TodoItem = ({todo, onRemove, onToggle}) => {
+
     // console.log('item: ', todo);
     const {id, text, done} = todo;
     return (
