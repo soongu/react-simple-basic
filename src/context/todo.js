@@ -43,7 +43,7 @@ const TodoProvider = ({children}) => {
 
     // 할 일 추가 함수
     const onInsert = useCallback(text => {
-        console.log('text:', text);
+        // console.log('text:', text);
         const newTodo = {
             id: nextId.current,
             text,
